@@ -8,7 +8,7 @@ int main() {
     std::string user_input;
 
     std::ofstream file;
-    file.open("C:\\Users\\Poizone\\CLion_HW23_5\\payments", std::ios::app);
+    file.open("C:\\Users\\Poizone\\CLion_HW23_5\\payments.txt", std::ios::app);
     file << std::endl;
 
     std::cout << "Type name: ";
