@@ -8,7 +8,6 @@ bool check_date(std::string &date)
     y = std::stoi(date.substr(6));
     m = std::stoi(date.substr(3, 2));
     d = std::stoi(date.substr(0, 2));
-
     while(true)
     {
         if((d > 0 && d < 32) &&
@@ -26,5 +25,4 @@ bool check_date(std::string &date)
         m = std::stoi(user_input.substr(3, 2));
         d = std::stoi(user_input.substr(0, 2));
     }
-
 }
