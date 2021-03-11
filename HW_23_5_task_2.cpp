@@ -8,10 +8,12 @@ int randomizer_x()
 {
     int x = 0;
     srand ( time(NULL) );
-    for(int i = 0; i < rand() % 5; i++)
+    while(!x)
     {
-        x += rand() % 5;
-        if(!x) {i=0;continue;}
+        for(int i = 0; i < rand() % 5; i++)
+        {
+            x += rand() % 5;
+        }
     }
     return x;
 }
@@ -20,18 +22,21 @@ int randomizer_y()
 {
     int x = 0;
     srand ( time(NULL) );
-    for(int i = 0; i < rand() % 10; i++)
+    while(!x)
     {
-        x += rand() % 5;
-        if(!x) {i=0;continue;}
+        for(int i = 0; i < rand() % 10; i++)
+        {
+            x += rand() % 5;
+        }
     }
+
     return x;
 }
 
-int bool_randomizer(int times)
+int bool_randomizer()
 {
     int x = 0;
-    srand ( time(NULL) );
+    srand ( time(nullptr) );
     x = rand() % 2;
     return x;
 }
@@ -40,21 +45,20 @@ int main()
 {
     int
     x = randomizer_x(),
-    y = randomizer_y(),
-    rand_number = randomizer_x() + randomizer_y();
+    y = randomizer_y();
 
     std::ofstream file;
     file.open("C:\\Users\\Poizone\\CLion_HW23_5\\bool_picture.txt");
 
     std::cout << "string length x=" << x << " column height y=" << y << std::endl << std::endl;
-    for(int i = 0; i < x; i++)
+    for(int i = 0; i < y; i++)
     {
-        for(int j = 0; j < y; j++)
+        for(int j = 0; j < x; j++)
         {
-            int w = bool_randomizer(rand_number);
+            int w = bool_randomizer();
             std::cout << w << " ";
             file << w << " ";
-            Sleep(100);
+            Sleep(250);
         }
         std::cout << "\n";
         file << "\n";
