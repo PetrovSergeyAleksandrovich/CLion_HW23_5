@@ -12,6 +12,9 @@ int main()
 
 while(true)
 {
+    //clear buffer before putting data in it
+    buffer.clear();
+
     //read river to buffer
     from_river.open("C:\\Users\\Poizone\\CLion_HW23_5\\river_fishes.txt");
     while(!from_river.eof())
@@ -57,7 +60,6 @@ while(true)
                 to_river << buffer[j] << std::endl;
             }
             to_river.close();
-            buffer.clear();
             break;
         }
     }
