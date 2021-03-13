@@ -21,7 +21,7 @@ while(true)
     {
         std::string tmp;
         from_river >> tmp;
-        if(tmp != "") buffer.push_back(tmp);
+        if(tmp != "") buffer.push_back(tmp); //if not empty string
     }
     from_river.close();
 
@@ -31,7 +31,7 @@ while(true)
     {
         std::cout << buffer[i] << std::endl;
     }
-    //condition to stop fishing (if nothing got from river to buffer)
+    //condition to stop fishing (if there is no data from river to buffer sent)
     if(buffer.empty())
     {
         std::cout << "THERE IS NO MORE FISH!";
@@ -56,7 +56,7 @@ while(true)
             to_river.open("C:\\Users\\Poizone\\CLion_HW23_5\\river_fishes.txt");
             for(int j = 0; j < buffer.size(); j++)
             {
-                if(buffer[j] == "") continue;
+                if(buffer[j] == "") continue; //if empty string
                 to_river << buffer[j] << std::endl;
             }
             to_river.close();
