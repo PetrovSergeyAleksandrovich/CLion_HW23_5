@@ -25,8 +25,8 @@ while(true)
     }
     from_river.close();
 
-    //check whats in the buffer
-    std::cout << "\nwhat in buffer:" << std::endl;
+    //check what's in the buffer
+    std::cout << "\nwhat in river:" << std::endl;
     for(int i = 0; i < buffer.size(); i++)
     {
         std::cout << buffer[i] << std::endl;
