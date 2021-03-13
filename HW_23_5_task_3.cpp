@@ -1,51 +1,66 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 int main()
 {
-    bool flag = 0;
-    int watchdog = 0;
-    std::string river_fish = "none";
-    std::string input = "none";
-    std::string empty = "there is no such fish!!!";
+    std::string river_fish;
+    std::string input;
+    std::vector<std::string> buffer;
     std::ifstream from_river;
-    std::ofstream to_river;
-    std::ofstream to_basket;
+    std::ofstream to_river, to_basket;
 
-    while(true)
+while(true)
+{
+    //read river to buffer
+    from_river.open("C:\\Users\\Poizone\\CLion_HW23_5\\river_fishes.txt");
+    while(!from_river.eof())
     {
-        std::cout << "type your fish:";
-        std::cin >> input;
+        std::string tmp;
+        from_river >> tmp;
+        if(tmp != "") buffer.push_back(tmp);
+    }
+    from_river.close();
 
-        from_river.open("C:\\Users\\Poizone\\CLion_HW23_5\\fish_in_the_river.txt", std::ios::binary);
-
-        while(input != river_fish && !from_river.eof())
-        {
-            watchdog = from_river.tellg();
-            from_river >> river_fish;
-            std::cout << watchdog << " " << river_fish << std::endl;
-        }
-        from_river.close();
-        std::cout << "\ncheck1";
-
-        to_basket.open("C:\\Users\\Poizone\\CLion_HW23_5\\fish_basket.txt", std::ios::app);
-        to_basket << river_fish << std::endl;
-        to_basket.close();
-        std::cout << "\ncheck2";
-
-        //ERROR HERE
-        to_river.open("C:\\Users\\Poizone\\CLion_HW23_5\\fish_in_the_river.txt", std::ios::binary);
-        to_river.seekp(watchdog);
-        std::cout << "\ntell pointer to write from: " << to_river.tellp();
-        to_river << empty;
-        to_river.close();
-        std::cout << "\ncheck3";
-        //ERROR HERE
-
-        river_fish = "none";
-        input = "none";
-        std::cout << std::endl;
+    //check whats in the buffer
+    std::cout << "\nwhat in buffer:" << std::endl;
+    for(int i = 0; i < buffer.size(); i++)
+    {
+        std::cout << buffer[i] << std::endl;
+    }
+    //condition to stop fishing (if nothing got from river to buffer)
+    if(buffer.empty())
+    {
+        std::cout << "THERE IS NO MORE FISH!";
+        break;
     }
 
+    //user input fish type
+    std::cout << "\ntype your fish:";
+    std::cin >> input;
+
+    //check user input with buffer
+    for(int i = 0; i < buffer.size(); i++)
+    {
+        if(input == buffer[i])
+        {
+            buffer[i] = "";
+            //write fish to basket
+            to_basket.open("C:\\Users\\Poizone\\CLion_HW23_5\\fish_basket.txt", std::ios::app);
+            to_basket << input << std::endl;
+            to_basket.close();
+            //write buffer back to river without fish been cought
+            to_river.open("C:\\Users\\Poizone\\CLion_HW23_5\\river_fishes.txt");
+            for(int j = 0; j < buffer.size(); j++)
+            {
+                if(buffer[j] == "") continue;
+                to_river << buffer[j] << std::endl;
+            }
+            to_river.close();
+            buffer.clear();
+            break;
+        }
+    }
+}
     return 0;
 }

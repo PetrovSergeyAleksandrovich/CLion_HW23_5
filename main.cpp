@@ -1,16 +1,17 @@
-#include <ctime>
 #include <iostream>
-#include <Windows.h>
-#include <conio.h>
+#include <fstream>
 
-int main() {
-    while (true)
-    {
-        std::time_t result = std::time(nullptr);
-        std::string time = std::ctime(&result);
-        std::cout << time;
-        Sleep(1000);
-        system("cls");
-    }
+int main()
+{
+    std::ifstream file;
+    std::string my_str = "string";
+    file.open("C:\\Users\\Poizone\\CLion_HW23_5\\TEST.txt");
+
+    file >> my_str;
+    file >> my_str;
+    file >> my_str;
+    std::cout << my_str;
+
+    file.close();
     return 0;
 }
