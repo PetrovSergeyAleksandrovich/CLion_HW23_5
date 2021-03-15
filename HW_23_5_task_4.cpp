@@ -26,8 +26,8 @@ void bankinit(std::string path)
         int banknote = randomizer();
         sum += banknote;
         to_bank << banknote << std::endl;
-        std::cout << i << " " << banknote << " " << sum << std::endl;
-        Sleep(0);
+        std::cout << i << " position / " << banknote << "RUB. you can take: " << sum << std::endl;
+        Sleep(500);
     }
     to_bank.close();
 }
@@ -114,7 +114,7 @@ int main()
 
                 if(money == user_input)
                 {
-                    std::cout << "your cash: " << money << std::endl;
+                    std::cout << "\nYOUR CASH: " << money << std::endl;
 
                     to_bank.open(path, std::ios::trunc);
                     for(int j = 0; j < buffer.size(); j++)
